@@ -12,6 +12,15 @@ nodevue/
 node_modules/
 chatcord/
 chatbot/
+chat_enquery/
+chat_service/
+chatApp/
+iamport-rest-client-php/
+jAutoCalc/
+maphilight/
+mychat/
+uploads/
+
 
 # Compiled source #
 ###################
