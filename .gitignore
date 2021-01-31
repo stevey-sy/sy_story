@@ -1,0 +1,64 @@
+# DB 정보 포함된 파일 목록
+db_connection.php
+db_info.php
+db.php
+
+# 네이버 스마트 에디터 목록 
+smarteditor2/
+board_editor/
+ckeditor4/
+chat/
+nodevue/
+node_modules/
+chatcord/
+chatbot/
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+footer.php
+header.php
+index.html
+write.html
+project/db.php
+db_connection.php
+db_info.php
+project/js/jquery-3.2.1.min.js
+project/js/jquery-3.5.1.min.js
+project/manager_join_action.php
+project/manager_login.php
+project/js/jquery-ui.min.js
+project/css/jquery-ui.min.css
+project/db.php
+db_connection.php
