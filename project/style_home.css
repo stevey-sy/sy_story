@@ -1,0 +1,35 @@
+
+body {margin: 0px; padding: 0px; background: gray;}
+
+ul {list-style:none;}
+li {text-align: right; display: inline;}
+#login_area { height: 50px; text-align: right; font-size: 15px; padding-right: 20px; list-style:none;}
+
+.wrap { background: white; width: 850px; margin: 0px auto 0px auto}
+header {background: white; width: 100%; height: 150px; padding: 0.1px 0px 0px 0px;}
+
+#title {
+    padding-left: 0;
+    width: 100%;
+    height: 50px;
+    float: left;
+    text-align: center;
+
+}
+
+.main_image {
+    margin-top: 5px;
+}
+
+img {
+    max-width: 100%;
+  }
+
+a {text-decoration: none; color: black;}
+nav a:hover {color: gray; border-color: darkgray;}
+nav { height: 50px; background: lightgray; text-align: center; color: black; padding: 0.1px 0px 0px 0px;}
+nav li {display: inline; padding: 5px;}
+nav a {text-decoration: none; color: black; padding: 8px; border-style: hidden hidden solid hidden; border-color: transparent; font-weight: bold}
+nav a:hover {color: gray; border-color: darkgray;}
+
+footer {float: bottom;  height: 50px;padding: 20px 0px 0px 0px; background: black; color: white; clear: both; text-align: center;}

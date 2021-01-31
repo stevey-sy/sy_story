@@ -1,0 +1,65 @@
+  /* 댓글 */
+  .reply_view {
+	width:800px;
+	margin-top:50px; 
+	word-break:break-all;
+}
+.dap_lo {
+	font-size: 14px;
+	padding:10px 0 15px 0;
+	border-bottom: solid 1px gray;
+}
+.dap_to {
+	margin-top:5px;
+}
+.rep_me {
+	font-size:12px;
+}
+.rep_me ul li {
+	float:left;
+	width: 30px;
+}
+.dat_delete {
+	display: none;
+}	
+.dat_edit {
+    display:none;
+    background-color: black;
+    color: white;
+	border: solid 1px gray;
+}
+.dap_sm {
+	position: absolute;
+	top: 10px;
+}
+.dap_edit_t{
+	width:520px;
+	height:70px;
+	position: absolute;
+	top: 40px;
+}
+.re_mo_bt {
+	position: absolute;
+	top:40px;
+	right: 5px;
+	width: 90px;
+	height: 72px;
+}
+#re_content {
+	width:650px;
+	height: 56px; 
+}
+.dap_ins {
+  margin-top:10px;
+  width:800px;
+}
+.re_bt {
+	position: absolute;
+	width:120px;
+	height:56px;
+	font-size:16px;
+	margin-left: 30px;
+}
+#foot_box {
+	height: 50px; 
+}

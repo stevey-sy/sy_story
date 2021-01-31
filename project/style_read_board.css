@@ -1,0 +1,32 @@
+#board_read {
+	width:900px;
+	position: relative;
+	word-break:break-all;
+}
+#user_info {
+	font-size:14px;
+}
+#user_info ul li {
+	float:left;
+	margin-left:10px;
+}
+#board_line {
+	width:880px;
+	height:2px;
+	background: gray;
+	margin-top:20px;
+}
+#board_content {
+	margin-top:20px;
+}
+#board_option {
+	font-size:14px;
+	color:#333;
+	position: absolute;
+	right: 0;
+}
+#board_option > ul > li {
+	float:left;
+	margin-left:10px;
+}
+li {list-style:none;}

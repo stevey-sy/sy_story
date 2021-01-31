@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+
+h2 {
+    margin: 0;
+    padding-top: 20px;
+    padding-left: 20px;
+    background-color: black;
+    color:white;
+}
+
+.title {
+    height: 80px;
+    background-color: black;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.border_line {
+    border-bottom:1px solid gray;
+}
+    .container {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        width: 800px;
+        display: grid;
+        grid-template-rows: 50px 40px 100px;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid gray;
+        
+    }
+    /* 이미지 부분 */
+    .item:nth-child(1) {
+        grid-row: 1 / 4;
+    }
+    /* 기사 제목 */
+    .item:nth-child(2) {
+        padding-top:15px;
+        width: 500px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: "Nanum Gothic", sans-serif;
+        text-decoration: underline;
+
+        /* 텍스트 길면 ...생략처리 */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 480px;
+        height: 20px;
+
+
+    }
+    /* 기사 날짜 부분 */
+    .item:nth-child(3) {
+        margin-right: 5px;
+        text-align: right;
+        font-size: 12px;
+        font-weight: bold;
+        font-family: "Nanum Gothic", sans-serif;
+    }
+    /* 기사 내용 부분 */
+    #article_content {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: "Nanum Gothic", sans-serif;
+    font-size: 15px;
+    color: darkgray;
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical; 
+      width        : 500px;     /* 너비는 변경될수 있습니다. */
+      height       : 60px;
+      line-height:20px;
+      text-overflow: ellipsis;  /* 위에 설정한 100px 보다 길면 말줄임표처럼 표시합니다. */
+      overflow     : hidden;    /* 내용이 길면 감춤니다 */
+      
+    }
+
+    .button {
+        width: 100px;
+        height: 35px;
+        font-weight: bold;
+        float: right;
+        border:none;
+        outline: none;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-color: black;
+        color: white;
+    }
+
+.button::before,
+.button::after {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    content: '';
+}
+.button,
+.button::before,
+.button::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.button:hover {
+    background-color: deepskyblue;
+}
+
+

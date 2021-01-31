@@ -1,0 +1,168 @@
+
+.product_table {
+    height:40px;
+    border-top:2px solid black;
+    border-bottom:1px solid #CCC;
+    font-weight: bold;
+    font-size: 17px;
+
+}
+
+.final_price_area {
+    width: 100%;
+}
+td {
+    text-align: center;
+    border-bottom:1px solid #CCC;
+}
+
+.head_line {
+    height:40px;
+    border-top:2px solid black;
+    border-bottom:1px solid #CCC;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.product_img {
+    padding: 20px 20px 5px;
+    width: 270px;
+    height: 330px;
+}
+
+#product_name {
+    font-weight:bold;
+}
+
+.sub_title {
+    width: 300px;
+    height: 50px;
+    text-align: left;
+}
+
+#in_content {
+    width: 500px;
+}
+.border_line {
+    border-bottom:1px solid #CCC;
+}
+#input_textarea_name {
+    width: 500px;
+    height: 30px;
+}
+#input_textarea_contact {
+    width: 500px;
+    height: 30px;
+}
+.input_address {
+    width: 500px;
+    height: 30px;
+}
+.input_postcode {
+    width: 250px;
+    height: 30px;
+}
+.input_postcode_btn {
+    text-align: center;
+    background-color: black;
+    color: white;
+    border: none;
+    width: 100px;
+    height: 30px;
+}
+.address_area {
+    text-align: left;
+}
+.input_address_detail {
+    width: 240px;
+    height: 30px;
+}
+.user_input_name {
+    text-align: left;
+}
+.btn_area {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+
+}
+
+#btn_cancel {
+    text-align:center;
+    background-color: gray;
+    color: white;
+    width:300px;
+    height:30px;
+    border:none;
+
+}
+
+#btn_buy {
+    border:none;
+    text-align:center;
+    background-color: black;
+    color: white;
+    width:300px;
+    height:30px;
+}
+
+.button {
+    display: inline-block;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    text-decoration: none;
+    border:none;
+    outline: none;
+    background-color: #333;
+    color: #fff;
+}
+
+.button::before,
+.button::after {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    content: '';
+}
+.button,
+.button::before,
+.button::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.button:hover {
+    background-color: deeppink;
+}
+
+.head_border_line {
+    margin-bottom: 3px;
+    border-bottom: 2px solid black;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#total_product_price {
+    text-align:center;
+    font-weight: bold;
+}
+#total_price_value {
+    text-align:center;
+    font-weight: bold;
+    color:red;
+}
+
+#total_price_area {
+    background-color:gray;
+    color:white;
+}
+
+#total_price {
+    background-color:black;
+    color:white;
+    font-weight: bold;
+}

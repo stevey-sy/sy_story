@@ -1,0 +1,29 @@
+{
+  "name": "git_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ckeditor.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "create-react-app": "^3.4.1",
+    "express": "^4.17.1",
+    "jautocalc": "^1.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tpdudrns/git_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tpdudrns/git_project/issues"
+  },
+  "homepage": "https://github.com/tpdudrns/git_project#readme"
+}

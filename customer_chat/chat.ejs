@@ -1,0 +1,213 @@
+
+<!doctype html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<head>
+    <title>chat_practice</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height:800px; font: 1rem Helvetica, Arial; font-weight:50}
+        form { display: flex; flex-wrap: wrap; background: black; color: white; padding: 3px; width: 100%; position: relative;}
+        #nickNameForm{
+        }
+        #typeForm{
+            bottom:0;
+        }
+        #whoIsInBox{
+
+            overflow-y:scroll;
+        }
+        form input { flex-basis:auto; border: 0; padding: 10px; width: 350px; margin-bottom:1%;
+            margin-right: .5%; font-size:1rem}
+        form button { flex-basis:auto; width: 80px; background-color: yellow;
+            border: none; padding: 10px; font-size:1rem; margin-left: 15px; height: 37px;}
+        #test {
+            flex:1;
+        }
+        #messages { list-style-type: none; margin: 0; padding: 0; height:550px; overflow-y:scroll; position:relative;}
+        #messages li { padding: 5px 10px; }
+        #messages li:nth-child(even) { background: #eee; }
+        ul{
+            font-size:1.5rem
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src=”https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js”> </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let roomName = "<%= roomName %>"
+        let name='';
+
+        $(function () {
+
+            var socket= io();
+
+            socket.on ('find_user', msg => {
+                name = msg;
+                socket.emit('new-user', roomName, name)
+            });
+
+            socket.on('user_connected', name => {
+
+                $('#messages').append($('<li>').text('====='+name+"  님이 입장하셨습니다======"));
+                $('#messages').scrollTop($("#messages")[0].scrollHeight);
+                //$('#whoIsInBox ul').append($('<li>').text(name))
+                socket.emit('add_user_list', roomName, name)
+                // user_list.push(name);
+                // editUsers(user_list);
+
+                if (name !== 'admin') {
+                    $('#messages').append($('<li>').text('*** 잠시 후 관리자가 접속합니다. 잠시만 기다려 주세요 ***'));
+
+                }
+            })
+
+            socket.on('user_disconnected', name => {
+                $('#messages').append($('<li>').text('====='+name+"  님이 퇴장하셨습니다====="));
+                $('#messages').scrollTop($("#messages")[0].scrollHeight);
+            })
+
+            socket.on('update_list', data => {
+                editUsers(data);
+            })
+
+            //클라이언트가 몇번방에서 메시지를 보내는 함수
+            $('#typeForm').submit(function() {
+                if ($("input[name=test]").val().trim() == '') {
+                    if ($('#m').val().trim() == '') {
+                        alert("대화를 입력해 주세요.");
+                    } else {
+                        socket.emit('chatting', {
+                            roomName: roomName,
+                            name: name,
+                            msg:$('#m').val()
+                        });
+                        $('#m').val('');
+                        return false;
+                    }
+                } else {
+                    uploadFile();
+                }
+
+            });
+
+            // 이미지 첨부하면 작동될 코드
+            $('#uploadBtn').on('click', function() {
+                uploadFile();
+            });
+
+            // 가져온 msg 객체를 html 에 뿌려준다.
+            socket.on('broadcast', function(msg) {
+                $('#messages').append($('<li>').text(msg))
+                // $('<li>').text(msg).focus();
+                $('#messages').scrollTop($("#messages")[0].scrollHeight);
+            });
+
+            socket.on('image', function(data) {
+                var output = '';
+
+                output += '    <div>' + data.name + ' : </div>';
+                output += '    <img src = ' + data.message + ' height= 200px width = 200px>';
+
+                $('#messages').append($('<li>').html(output))
+                $('#messages').scrollTop($("#messages")[0].scrollHeight);
+                $("input[name=test]").val('');
+
+                // $(output).prependTo('#content');
+                // $('#content').listview('refresh');
+
+            });
+
+            function uploadFile(){
+                var form = $('#uploadForm')[0];
+                var formData = new FormData();
+                formData.append("image", $("input[name=test]")[0].files[0]);
+                var obj = {formData}
+                $.ajax({
+                    url : 'http://systory.ga:3000/image',
+                    type : 'POST',
+                    method: "POST",
+                    timeout: 0,
+                    processData: false,
+                    mimeType: "multipart/form-data",
+                    contentType: false,
+                    data: formData,
+                    // aws s3에 파일 업로드가 성공하면 실행되는 코드
+                    success: function (data) {
+                        // 'image'라는 이벤트가 발생한다.
+                        socket.emit('image', {
+                            // 'image' 라는 이벤트에 사용될 name, message, data를 정의한다.
+                            name: name,
+                            room: roomName,
+                            message: data,
+                            date: new Date().toUTCString()
+                        });
+                        //alert("complete");
+                        $("#btnSubmit").prop("disabled", false);
+                    },
+                    error: function (e) {
+                        console.log("ERROR : ", e);
+                        $("#btnSubmit").prop("disabled", false);
+                        alert("fail");
+                    }
+                }).done(function(data){
+                    callback(data);
+                });
+                $.submit();
+
+            }
+
+        })
+        // 참가자 리스트 실시간으로 변경해주는 코드
+        function editUsers(whoIsOn){
+
+            $('#whoIsInBox ul').children().each((index, item)=>{
+                $(item).remove();
+            });
+
+            $.each(whoIsOn, function (index, item) {
+                if (item.room_name === roomName) {
+                    $('#whoIsInBox ul').append($('<li>').text(item.user_id));
+                }
+            });
+
+        }
+
+
+    </script>
+</head>
+<body>
+<div>
+    <ul id="messages">
+        <li id='chatTitle' style='font-size:3rem; font-weight:bold; background-color:dodgerblue; color:white;'>"<%= roomName %>"</li>
+    </ul>
+
+</div>
+<div id='whoIsInBox'>
+    <h1>
+        # 대화방 참가자
+    </h1>
+    <ul id='whoIsIn'>
+        <li>Test In</li>
+    </ul>
+
+</div>
+
+<form action="" id="typeForm" method="post" enctype="multipart/form-data">
+    <input id="m" autocomplete="false" />
+    <button>Send</button>
+    <input type="file" name="test" id="test"/>
+    <!--        <button type="button" id="uploadBtn" class="button">이미지 출력</button>-->
+</form>
+<!--    <form id="uploadForm" method="post" enctype="multipart/form-data">-->
+
+<!--    </form>-->
+
+
+</body>
+</html>

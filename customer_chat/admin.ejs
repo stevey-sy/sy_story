@@ -1,0 +1,170 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>
+        Entering Chat
+    </title>
+
+    <style>
+        html, body{background-color: cornflowerblue; width:99%; height:80%;}
+        form input { border: 0; padding: 10px; width: 60%; margin:auto; margin-left: 20px;
+            font-size:15px;
+            background-color:white; opacity:1;}
+        /*form button { width: 30%; background-color: black; color: white; border: none; padding: 10px;*/
+        /*    font-size:15px;}*/
+        .head_area {
+            margin-top:50px;
+        }
+        .head_title {
+            text-align: center;
+            background-color: black;
+            color:white;
+        }
+        .head_title2 {
+
+            text-align: center;
+            background-color: black;
+            color:white;
+        }
+        #room-list {
+            text-align:center;
+            width: 100%;
+            font-size: 25px;
+            background-color: lightgrey;
+            color: black;
+            margin-bottom: 3px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        .list-container{
+            width: 90%;
+            height: 80px;
+            margin-left: 30px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            background-color: yellow;
+            border-radius: 10px;
+        }
+
+       .room-list {
+           padding-top: 28px;
+           margin-left: 10px;
+           display: inline-block;
+           widht: 250px;
+           margin-bottom: 5px;
+       }
+
+        .button {
+            margin-right: 5px;
+            margin-top: 22px;
+            float: right;
+            display: inline-block;
+            width: 10%;
+            height: 40px;
+            font-size:15px;
+            text-align: center;
+            text-decoration: none;
+            border:none;
+            outline: none;
+            background-color: black;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .button::before,
+        .button::after {
+            position: absolute;
+            z-index: -1;
+            display: block;
+            content: '';
+        }
+        .button,
+        .button::before,
+        .button::after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+        }
+
+        .button:hover {
+            background-color: deepskyblue;
+        }
+
+        #select_query{
+            vertical-align: middle;
+            text-align-last: center;
+            width: 80%;
+            margin-left: 30px;
+            margin-right: 30px;
+            height: 40px;
+        }
+    </style>
+    <script defer src="http://systory.ga:3000/socket.io/socket.io.js"></script>
+    <script defer src="script.js"></script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script>
+
+        const roomContainer = document.getElementById('room-container')
+        const noRoom = document.getElementById('no')
+
+        $(function () {
+            var socket= io();
+
+            socket.on('room-created', room => {
+
+                // 방이 생성될 때마다, room_list 배열에 추가시킨다.
+                // div 태그를 생성하는 변수.
+                const roomElement = document.createElement('div')
+                // room = lobby 페이지에서 사용자가 지정한 방이름 변수.
+                // div 태그안에 room 변수를 넣는다.
+                roomElement.innerText = room
+                // roomLink 는 a tag를 생성하는 변수.
+                const roomLink = document.createElement('a')
+                // a태그 안에 href를 생성하는데, 클릭하게 되면 사용자가 정한 방이름 주소로 href 된다.
+                roomLink.href = '/${room}'
+                roomLink.innerText = 'join'
+                roomContainer.append(roomElement)
+                roomContainer.append(roomLink)
+                window.location.reload();
+                $("div").remove("#no");
+            })
+
+            socket.on('redirect', function (destination) {
+                window.location.href = destination;
+                $("div").remove("#no");
+            });
+
+        });
+
+
+    </script>
+
+</head>
+
+<body>
+    <div class="head_area">
+        <h1 class="head_title"> 1:1 채팅 관리자 모드 </h1>
+    </div>
+    <div style="margin-bottom: 50px;">
+        <h2># 사용자의 채팅 신청 목록</h2>
+    </div>
+
+    <div id="room-container">
+        <% Object.keys(rooms).forEach(room => { %>
+        <div class="list-container">
+            <div class="room-list"> 알림: " <%= room %> 요청을 받았습니다."</div>
+            <a href="/<%= room %>" onclick="window.open(this.href, '_blank'); return false;"><button class="button">join</button></a>
+        </div>
+
+        <% }) %>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+* {
+    /*margin: 50 auto;*/
+
+  	font-family: 'Malgun gothic','Sans-Serif','Arial';
+  }
+
+  .tc {
+    text-align:center;
+  }
+
+  tbody {
+    height: 500px;
+  }
+
+  #board {
+    width: 100%;
+    text-align:center;
+    position: static;
+    background:#fff;
+  }
+
+  .list_table {
+    width: 100%;
+    text-align: center;
+  }
+
+  .list_table thead th {
+    height:40px;
+	  border-top:2px solid black;
+	  border-bottom:1px solid #CCC;
+	  font-weight: bold;
+	  font-size: 17px;
+  }
+
+  #write_btn {
+	position: absolute;
+  margin-top:20px;
+  margin-bottom: 5px;
+  right: 0;
+  }
+  #page_num {
+      text-align: center;
+      background-color: white;
+      height: 50px;
+	font-size: 14px;
+
+    margin-top:80px;
+    margin-bottom:20px;
+  }
+  #page_num ul li {
+
+	margin-left: 10px; 
+  text-align: center;
+  margin-bottom:20px;
+  }
+  .mark_red {
+      text-align: center;
+	font-weight: bold;
+	color:red;
+  }
+
+  ul {
+  list-style:none;
+  }
+  article {
+    height: 850px;
+  }
+  .btn_write {
+    float: right;
+    width: 80px;
+    color: white;
+    margin-top:5px;
+    margin-right: 80px;
+    margin-bottom: 80px;
+  }
+  .page_num_area {
+      text-align:center;
+  }

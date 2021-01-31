@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+    h1, h2 {
+        text-align: center;
+    }
+    img {
+        width: 400px;
+        height: 550px;
+    }
+    #check_area {
+        display:inline;
+        
+    }
+</style>
+<script language="JavaScript">
+    function setCookie(name, value, expiredays) {
+        var date = new Date();
+        date.setDate(date.getDate() + expiredays);
+        document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString();
+    }
+
+    function closePopup() {
+        if (document.getElementById("check").value) {
+            setCookie("popupYN", "N", 1);
+            self.close();
+        }
+    }
+</script>
+</head>
+<body>
+    <div id=wrapper>
+    <h1>SY's Interior Story</h1>
+    <h2>방문을 환영합니다!</h2>
+    <div class="image_description"><img src="images/welcome.jpg" alt="" /></div>
+    <div id="check_area">
+    <input type="checkbox" id="check" onclick="closePopup();">
+    <br />
+    <font size=3> <b>하루에 한번만 보기</b> </font>
+    </div>
+    </div>
+</body>
+</html>
